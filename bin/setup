@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# We will look to clone all repositories from github.com/ShapleyIO that follow the pattern <service>-ui or <service>-api into a directory name .repos
+set -eou pipefail
+
+# Create the directory to store the repositories
+mkdir -p .repos
+
+# Authenticate with GitHub
+# gh auth login -w
+
+# Clone the private repositories via SSH
+gh api orgs/ShapleyIO/repos --paginate | jq -r '.[] | select(.archived == false and (.name | endswith("-ui") or endswith("-api"))) | "\(.ssh_url) .repos/\(.name)"' | xargs -n 2 git clone
+
+# Change to the directory
+cd .repos

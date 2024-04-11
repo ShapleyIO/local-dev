@@ -1,0 +1,11 @@
+# kustomization.yaml
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+resources:
+- ../.repos/cepheid-api/kustomize
+- ../.repos/cepheid-ui/kustomize
+- ../.repos/iam-api/kustomize
+- ../.repos/iam-ui/kustomize
+- ../.repos/orion-api/kustomize
+- ../.repos/orion-ui/kustomize
